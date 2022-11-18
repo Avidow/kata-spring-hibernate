@@ -11,6 +11,8 @@ import java.util.List;
 @Repository
 public class UserDaoImp implements UserDao {
 
+   private final String HQL_USERS_BY_CAR_STATEMENT = "from User u where u.car is not null and u.car.model = :model and u.car.series = :series";
+
    @Autowired
    private SessionFactory sessionFactory;
 
@@ -30,10 +32,9 @@ public class UserDaoImp implements UserDao {
       return query.getResultList();
    }
 
+   @SuppressWarnings("unchecked")
    public User getUserByCarStatement(String model, int series) {
-      TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery(
-              "from User u where u.car is not null and u.car.model = :model and u.car.series = :series"
-      );
+      TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery(HQL_USERS_BY_CAR_STATEMENT);
       query.setParameter("model", model);
       query.setParameter("series", series);
       return query.getResultList().get(0);
