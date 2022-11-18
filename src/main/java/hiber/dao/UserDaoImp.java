@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public class UserDaoImp implements UserDao {
 
-   private final String HQL_USERS_BY_CAR_STATEMENT = "from User u where u.car is not null and u.car.model = :model and u.car.series = :series";
+   private static final String HQL_USERS_BY_CAR_STATEMENT = "from User u where u.car is not null and u.car.model = :model and u.car.series = :series";
 
    @Autowired
    private SessionFactory sessionFactory;
