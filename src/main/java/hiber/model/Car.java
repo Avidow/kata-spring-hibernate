@@ -17,8 +17,6 @@ public class Car {
     @Column(name = "series")
     private Integer series;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "car")
-    private User user;
 
     public Car() {}
 
@@ -33,15 +31,6 @@ public class Car {
 
     public Long getId() {
         return this.carId;
-    }
-
-    public User getUser() {
-        return this.user;
-    }
-
-    public void setUser(User user) {
-        user.setCar(this);
-        this.user = user;
     }
 
     public String getModel() {
