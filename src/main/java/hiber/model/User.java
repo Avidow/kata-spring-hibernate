@@ -19,9 +19,6 @@ public class User {
    @Column(name = "email")
    private String email;
 
-   @Column(name = "car_id", insertable = false, updatable = false)
-   private Long carId;
-
    @OneToOne
    @JoinColumn(name = "car_id")
    private Car car;
@@ -37,7 +34,6 @@ public class User {
    public User(String firstName, String lastName, String email, Car car) {
       this(firstName, lastName, email);
       this.car = car;
-      this.carId = car.getId();
    }
 
    public Car getCar() {
@@ -78,14 +74,6 @@ public class User {
 
    public void setEmail(String email) {
       this.email = email;
-   }
-
-   public Long getCarId() {
-      return this.carId;
-   }
-
-   public void setCarId(Long carId) {
-      this.carId = carId;
    }
 
 }

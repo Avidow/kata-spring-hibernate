@@ -20,7 +20,6 @@ public class UserDaoImp implements UserDao {
    public void add(User user) {
       if (user.getCar() != null) {
          sessionFactory.getCurrentSession().save(user.getCar());
-         user.setCarId(user.getCar().getId());
       }
       sessionFactory.getCurrentSession().save(user);
    }
