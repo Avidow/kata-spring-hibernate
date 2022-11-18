@@ -31,6 +31,7 @@ public class UserDaoImp implements UserDao {
       return query.getResultList();
    }
 
+   @Override
    @SuppressWarnings("unchecked")
    public User getUserByCarStatement(String model, int series) {
       TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery(HQL_USERS_BY_CAR_STATEMENT);
