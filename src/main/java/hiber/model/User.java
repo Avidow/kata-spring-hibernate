@@ -19,12 +19,33 @@ public class User {
    @Column(name = "email")
    private String email;
 
+   @Column(name = "car_id", insertable = false, updatable = false)
+   private Long carId;
+
+   @OneToOne
+   @JoinColumn(name = "car_id")
+   private Car car;
+
    public User() {}
    
    public User(String firstName, String lastName, String email) {
       this.firstName = firstName;
       this.lastName = lastName;
       this.email = email;
+   }
+
+   public User(String firstName, String lastName, String email, Car car) {
+      this(firstName, lastName, email);
+      this.car = car;
+      this.carId = car.getId();
+   }
+
+   public Car getCar() {
+      return this.car;
+   }
+
+   public void setCar(Car car) {
+      this.car = car;
    }
 
    public Long getId() {
@@ -58,4 +79,13 @@ public class User {
    public void setEmail(String email) {
       this.email = email;
    }
+
+   public Long getCarId() {
+      return this.carId;
+   }
+
+   public void setCarId(Long carId) {
+      this.carId = carId;
+   }
+
 }
